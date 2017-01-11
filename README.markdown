@@ -1,6 +1,6 @@
 # Lipwig
 
-Lipwig is a small tool that for sending bulk emails in a slightly more friendly vibe than BCC'ing everyone.
+Lipwig is a small tool for sending bulk emails in a slightly more friendly vibe than BCC'ing everyone.
 
 ## Why?
 

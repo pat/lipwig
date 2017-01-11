@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Pat Allan"]
   spec.email         = ["pat@freelancing-gods.com"]
 
-  spec.summary       = %q{Write group emails in Markdown, send via Postmark.}
+  spec.summary       = %q{Write group emails in Markdown, send via Postmark or SMTP.}
   spec.homepage      = "https://github.com/pat/lipwig"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |file|
