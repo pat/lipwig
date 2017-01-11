@@ -1,12 +1,6 @@
-class Lipwig::Sender
-  def self.call(email)
-    new(email).call
-  end
+require 'postmark'
 
-  def initialize(email)
-    @email = email
-  end
-
+class Lipwig::Senders::Postmark < Lipwig::Senders::Abstract
   def call
     client.deliver_in_batches(messages).each do |response|
       puts "Delivery To:     #{Array(response[:to]).join(', ')}"
@@ -23,10 +17,6 @@ class Lipwig::Sender
     @client ||= Postmark::ApiClient.new ENV['LIPWIG_POSTMARK_API_KEY']
   end
 
-  def from
-    email.from || ENV['LIPWIG_FROM']
-  end
-
   def messages
     recipients.collect do |recipient|
       {
@@ -36,11 +26,5 @@ class Lipwig::Sender
         :html_body => email.body
       }
     end
-  end
-
-  def recipients
-    return [ENV['LIPWIG_RECIPIENTS']] if ENV['LIPWIG_RECIPIENTS']
-
-    email.recipients
   end
 end

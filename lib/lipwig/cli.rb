@@ -10,7 +10,7 @@ class Lipwig::CLI
   def call
     case command
     when 'send'
-      Lipwig::Sender.call email
+      Lipwig::Senders.call email
     when 'preview'
       Lipwig::Preview.call email
     when 'clear'
