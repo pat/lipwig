@@ -5,7 +5,7 @@ module Lipwig::Senders
     if ENV['LIPWIG_POSTMARK_API_KEY']
       require 'lipwig/senders/postmark'
       Lipwig::Senders::Postmark.call email
-    elsif ENV['LIPWIG_SMTP_CONNECTION']
+    elsif ENV['LIPWIG_SMTP_CONNECTION'] == 'true'
       require 'lipwig/senders/smtp_connection'
       Lipwig::Senders::SMTPConnection.call email
     elsif ENV['LIPWIG_SMTP_ADDRESS']
