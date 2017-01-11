@@ -44,11 +44,11 @@ If you're using Postmark's API, then all you need to set is the `LIPWIG_POSTMARK
 
 For SMTP, there's a handful of required environment variables:
 
-* LIPWIG_SMTP_ADDRESS
-* LIPWIG_SMTP_PORT
-* LIPWIG_SMTP_USERNAME
-* LIPWIG_SMTP_PASSWORD
-* LIPWIG_SMTP_DOMAIN
+* `LIPWIG_SMTP_ADDRESS`
+* `LIPWIG_SMTP_PORT`
+* `LIPWIG_SMTP_USERNAME`
+* `LIPWIG_SMTP_PASSWORD`
+* `LIPWIG_SMTP_DOMAIN`
 
 If you're using SMTP and sending many emails, it's recommended you use the persistent connection approach if your provider supports it, by setting `LIPWIG_SMTP_CONNECTION=true`.
 
