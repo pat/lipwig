@@ -1,25 +1,16 @@
 require 'mail'
+require 'lipwig/senders/smtp'
 
-class Lipwig::Senders::SMTPConnection < Lipwig::Senders::Abstract
+class Lipwig::Senders::SMTPConnection < Lipwig::Senders::SMTP
   def call
-    recipients.each do |recipient|
-      mail = Mail.new
-      mail.delivery_method :smtp_connection, :connection => connection
+    connection.start(
+      ENV['LIPWIG_SMTP_DOMAIN'],
+      ENV['LIPWIG_SMTP_USERNAME'],
+      ENV['LIPWIG_SMTP_PASSWORD'],
+      :plain
+    )
 
-      mail.content_type = 'text/html; charset=UTF-8'
-      mail.from         = from
-      mail.to           = recipient
-      mail.subject      = email.subject
-      mail.body         = email.body
-
-      begin
-        puts "Delivery To:     #{Array(recipient).join(', ')}"
-        mail.deliver!
-        puts "Delivery Status: OK", ""
-      rescue => error
-        puts "Delivery Status: Failed (#{error.message})", ""
-      end
-    end
+    super
 
     connection.finish
   end
@@ -34,13 +25,15 @@ class Lipwig::Senders::SMTPConnection < Lipwig::Senders::Abstract
         ENV['LIPWIG_SMTP_ADDRESS'], ENV['LIPWIG_SMTP_PORT']
       )
       smtp.enable_starttls_auto
-
-      smtp.start(
-        ENV['LIPWIG_SMTP_DOMAIN'],
-        ENV['LIPWIG_SMTP_USERNAME'],
-        ENV['LIPWIG_SMTP_PASSWORD'],
-        :plain
-      )
+      smtp
     end
+  end
+
+  def delivery_method
+    :smtp_connection
+  end
+
+  def delivery_method_options
+    {:connection => connection}
   end
 end
