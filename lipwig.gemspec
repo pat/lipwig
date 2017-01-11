@@ -16,7 +16,6 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |file| File.basename(file) }
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "postmark", "~> 1.9"
   spec.add_runtime_dependency "redcarpet", "~> 3.3"
 
   spec.add_development_dependency "rspec", "~> 3.0"

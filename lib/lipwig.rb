@@ -1,4 +1,3 @@
-require 'postmark'
 require 'redcarpet'
 require 'yaml'
 
