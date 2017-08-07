@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe Lipwig::Parser do
   let(:subject) do
     described_class.call <<-MIXED
@@ -7,6 +9,7 @@ recipients:
   - vetinari@pratchett.test
   - - moist@pratchett.test
     - spike@pratchett.test
+cc: "Drumknott <drumknott@pratchett.test>"
 ---
 What kind of man would put a known criminal in charge of a major branch of government? Apart from, say, the average voter.
     MIXED
@@ -25,6 +28,10 @@ What kind of man would put a known criminal in charge of a major branch of gover
       'vetinari@pratchett.test',
       ['moist@pratchett.test', 'spike@pratchett.test']
     ])
+  end
+
+  it 'reads the CCs' do
+    expect(subject.ccs).to eq(['Drumknott <drumknott@pratchett.test>'])
   end
 
   it 'parses the message body' do

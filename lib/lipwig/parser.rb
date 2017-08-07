@@ -14,6 +14,7 @@ class Lipwig::Parser
     email.from       = frontmatter['from']
     email.subject    = frontmatter['subject']
     email.recipients = frontmatter['recipients']
+    email.ccs        = Array frontmatter['cc']
     email.body       = html
     email
   end

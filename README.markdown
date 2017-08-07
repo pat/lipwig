@@ -31,12 +31,15 @@ Similar to Jekyll, Lipwig expects email files to be a mixture of YAML and Markdo
      - - "finn@obfuscated.email.com"
        - "poe@obfuscated.email.com"
      - "Kylo Ren <ben@obfuscated.email.com>"
+     cc: "General Organa <organa@obfuscated.email.com"
     ---
     Hi everyone,
 
     It's time for a **party**. How about next week? Shall I cook pancakes?
 
 As you can see, the recipients value expects an array, and it can contain arrays to send a single email to more than one person. Everything that follows after the `---` is Markdown, and will be rendered as HTML in the resulting email.
+
+Please note that the CC list accepts either a single value or an array of strings, and will apply to every email.
 
 ### Sending Configuration
 

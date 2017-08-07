@@ -11,6 +11,7 @@ class Lipwig::Senders::SMTP < Lipwig::Senders::Abstract
       mail.to           = recipient
       mail.subject      = email.subject
       mail.body         = email.body
+      mail.cc           = email.ccs
 
       begin
         puts "Delivery To:     #{Array(recipient).join(', ')}"

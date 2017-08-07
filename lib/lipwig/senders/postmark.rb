@@ -23,7 +23,8 @@ class Lipwig::Senders::Postmark < Lipwig::Senders::Abstract
         :from      => from,
         :to        => recipient,
         :subject   => email.subject,
-        :html_body => email.body
+        :html_body => email.body,
+        :cc        => email.ccs
       }
     end
   end
